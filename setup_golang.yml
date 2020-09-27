@@ -1,0 +1,22 @@
+---
+- hosts: localhost
+  become: true
+  become_user: root
+  gather_facts: false
+
+  tasks:
+    - name: "Setting the Path for Downloading"
+      shell: pwd
+      register: path
+
+    - name: "Download and Unarchive the Golang Binary"
+      unarchive:
+        src: https://dl.google.com/go/go1.15.2.linux-amd64.tar.gz
+        dest: "{{ path.stdout }}"
+        remote_src: yes
+      register: get_go
+
+    - name: "Checking the Status for Go Binary Downloaded"
+      debug:
+        msg: "Go Binary got Downloaded Successfully"
+      when: get_go | changed
