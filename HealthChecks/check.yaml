@@ -13,6 +13,10 @@ jobs:
   - get: concourse-golang
     trigger: true
   - task: golang-tasks
+    params:
+      app: export-daemon
+      env: dev-2
+      tenant: pst
     config:
       platform: linux
       image_resource:
@@ -28,5 +32,4 @@ jobs:
         - -c
         - |
           cd concourse-golang/HealthChecks/
-          ls
-          go run daemon.go
+          go run daemonApp.go
