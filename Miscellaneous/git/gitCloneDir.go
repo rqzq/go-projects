@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"gopkg.in/src-d/go-git.v4"
 	"os"
+	"os/exec"
 )
 
 func main(){
@@ -17,4 +18,10 @@ func main(){
 	if err != nil {
 		fmt.Println(err)
 	}
+	// Installing Docker
+	command:= exec.Command("/bin/sh","-c","sudo apt-get update && apt-get install  apt-transport-https ca-certificates  curl gnupg-agent software-properties-common ")
+	if err:= command.Run(); err!=nil{
+		fmt.Println("Error in Installation", err)
+	}
+	
 }
