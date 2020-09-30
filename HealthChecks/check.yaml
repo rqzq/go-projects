@@ -1,0 +1,31 @@
+---
+
+resources:
+- name: concourse-golang
+  type: git
+  source:
+    uri: https://github.com/rqzq/go-projects.git
+    branch: master
+
+jobs:
+- name: my-golang-job
+  plan:
+  - get: concourse-golang
+    trigger: true
+  - task: golang-tasks
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: golang
+          tag: latest
+      inputs:
+      - name: concourse-golang
+      run:
+        path: /bin/sh
+        args:
+        - -c
+        - |
+          cd concourse-golang
+          ls
