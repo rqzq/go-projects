@@ -27,5 +27,6 @@ jobs:
         args:
         - -c
         - |
-          cd concourse-golang
+          cd concourse-golang/HealthChecks/
           ls
+          go run daemon.go
