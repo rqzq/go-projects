@@ -1,0 +1,15 @@
+---
+resources:
+- name: source-code
+  type: git
+  source:
+    uri: https://github.com/rqzq/go-projects.git
+    branch: master
+
+jobs:
+- name: dd-events
+  plan:
+  - get: source-code
+    trigger: true
+  - task: Generating Datadog Events
+    file: source-code/Miscellaneous/regexp/task.yml
