@@ -44,6 +44,7 @@ func main(){
 	jsonData:= map[string]string{
 		"text": text,
 		"title": title,
+		"source_type_name": "API",
 	}
 	jsonValue,_:= json.Marshal(jsonData)
 	request, _:= http.NewRequest("POST","https://api.datadoghq.com/api/v1/events",bytes.NewBuffer(jsonValue))
