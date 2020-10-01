@@ -24,9 +24,8 @@ func main(){
 
 	// Getting the Values from Params Section
 	text:= os.Getenv("TEXT")
-	dd_key:= os.Getenv("api_value")
+	dd_key:= os.Getenv("DD_CLIENT_API_KEY")
 	title:= os.Getenv("TITLE")
-	component:= os.Getenv("COMPONENT")
 
 	// Reading the File Content
 	content, err:= ioutil.ReadFile("version")
@@ -44,7 +43,7 @@ func main(){
 	//Executing Curl Statements for Posting Datadog Events
 	jsonData:= map[string]string{
 		"text": text,
-		"title": "Test Title",
+		"title": title,
 	}
 	jsonValue,_:= json.Marshal(jsonData)
 	request, _:= http.NewRequest("POST","https://api.datadoghq.com/api/v1/events",bytes.NewBuffer(jsonValue))
