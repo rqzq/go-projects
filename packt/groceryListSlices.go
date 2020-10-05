@@ -9,13 +9,18 @@ func add_groceries(a string){
 }
 
 func listt_groceries(){
-	for i:=0;i<len(go_groceries);i++{
-		fmt.Println("Below are the Groceries Added:",go_groceries[i])
+	fmt.Println("Groceries List are as follows: ")
+	for _,data:= range go_groceries{
+		fmt.Println(data)
 	}
 }
 
 func main(){
-	add_grocery("Bread")
+	add_groceries("Bread")
+	add_groceries("Wheat")
+	add_groceries("Rice")
+	add_groceries("Omlette")
+	add_groceries("Ice Cream")
 	listt_groceries()
 
 }
