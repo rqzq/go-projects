@@ -3,8 +3,10 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 type deck []string
@@ -15,7 +17,7 @@ func newDeck() deck{
 	cardValues:=[]string{"Ace","One","Two","Three","Four","Five","Six","Seven","Eight","Nine"}
 	for _, suit:= range cardSuites {
 		for _, values:= range cardValues {
-			cards = append(cards, values + "Cards of " + suit)
+			cards = append(cards, values + " Cards of " + suit)
 		}
 	}
 	return cards
@@ -43,4 +45,13 @@ func newDeckFromFile(filename string) deck{
 	}
 	s:= strings.Split(string(bs),",")
 	return deck(s)
+}
+
+func (d deck) shuffle() {
+	source:= rand.NewSource(time.Now().UnixNano())
+	r:= rand.New(source)
+	for i:= range d{
+		newPosition:= r.Intn(len(d) -1)
+		d[i],d[newPosition] = d[newPosition],d[i]
+	}
 }
