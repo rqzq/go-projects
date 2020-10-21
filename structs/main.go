@@ -25,15 +25,16 @@ func main(){
 			zipCode: 713205,
 		},
 	}
+	jim.updateName("Shataram")
 	jim.print()
 	alex.print()
 }
 
-func (p Person) updateName(newFirstName string){
+func (p *Person) updateName(newFirstName string){
 	p.firstName=newFirstName
 }
 
-func (p Person) print(){
+func (p *Person) print(){
 	fmt.Println(p.firstName)
 	fmt.Println(p.contact.email)
 }
